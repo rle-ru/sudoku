@@ -16,6 +16,10 @@ SRCS_RAW := main.c	\
 			graphics_init.c	\
 			sudoku_init.c	\
 			main_loop.c	\
+			draw_grid.c	\
+			backtrack.c	\
+			find_empty_cell.c	\
+			is_valid.c	\
 
 SRCS := $(addprefix $(SRCS_FOLDER)/, $(SRCS_RAW))
 OBJS := $(SRCS:$(SRCS_FOLDER)/%.c=$(OBJS_FOLDER)/%.o)

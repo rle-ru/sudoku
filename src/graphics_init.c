@@ -33,6 +33,26 @@ void init_grid_surface(t_sudoku *sudoku)
 	sudoku->gridTexture = grid;
 }
 
+void init_font(t_sudoku *sudoku)
+{
+	TTF_Font *font = TTF_OpenFont("./arial.ttf", FONT_SIZE);
+	if (!font)
+	{
+		printf("TTF_OpenFont: %s\n", TTF_GetError());
+		exit(1);
+	}
+
+	SDL_Color color = {0, 0, 0, 255};
+	for (int i = 0; i < 9; i++)
+	{
+		SDL_Surface *surface = TTF_RenderText_Solid(font, (char[]){i + 49, '\0'}, color);
+		sudoku->cellTextures[i] = SDL_CreateTextureFromSurface(sudoku->renderer, surface);
+		SDL_FreeSurface(surface);
+	}
+
+	TTF_CloseFont(font);
+}
+
 void initGraphics(t_sudoku *sudoku)
 {
 	SDL_Init(SDL_INIT_VIDEO);
@@ -40,6 +60,7 @@ void initGraphics(t_sudoku *sudoku)
 	sudoku->window = SDL_CreateWindow("Sudoku", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
 	sudoku->renderer = SDL_CreateRenderer(sudoku->window, -1, SDL_RENDERER_ACCELERATED);
 	init_grid_surface(sudoku);
+	init_font(sudoku);
 }
 
 void quitGraphics(t_sudoku *sudoku)
@@ -49,4 +70,6 @@ void quitGraphics(t_sudoku *sudoku)
 	SDL_DestroyTexture(sudoku->gridTexture);
 	TTF_Quit();
 	SDL_Quit();
+	for (int i = 0; i < 9; i++)
+		SDL_DestroyTexture(sudoku->cellTextures[i]);
 }

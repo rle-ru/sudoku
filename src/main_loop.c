@@ -16,7 +16,7 @@ int main_loop(t_sudoku *sudoku)
 		}
 
 		SDL_RenderClear(sudoku->renderer);
-		SDL_RenderCopy(sudoku->renderer, sudoku->gridTexture, NULL, NULL);
+		draw_grid(sudoku);
 		SDL_RenderPresent(sudoku->renderer);
 	}
 	return 0;

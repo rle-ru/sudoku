@@ -16,6 +16,7 @@ typedef struct s_sudoku
 	SDL_Window *window;
 	SDL_Renderer *renderer;
 	SDL_Texture *gridTexture;
+	SDL_Texture *cellTextures[9];
 
 	int range[9];
 	int grid[9][9];
@@ -42,5 +43,25 @@ void init_sudoku(t_sudoku *sudoku);
 **	main game loop.
 */
 int main_loop(t_sudoku *sudoku);
+
+/*
+**	Draws the sudoku grid.
+*/
+void draw_grid(t_sudoku *sudoku);
+
+/*
+**	finds the next empty cell in the grid.
+*/
+int find_empty_cell(int grid[9][9], int *row, int *col);
+
+/*
+**	Checks if a number is valid in a given cell.
+*/
+int is_valid(int grid[9][9], int row, int col, int num);
+
+/*
+**	Backtracking algorithm to solve the sudoku.
+*/
+int solver(t_sudoku *sudoku);
 
 #endif

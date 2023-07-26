@@ -11,10 +11,12 @@ int main(int ac, char **av)
 
 	srand(time(NULL));
 	initGraphics(&sudoku);
+	init_sudoku(&sudoku);
 	if (ac == 1)
 	{
 		printf("Welcome to %s!\n", av[0]);
 	}
+	solver(&sudoku);
 	int ret = main_loop(&sudoku);
 	quitGraphics(&sudoku);
 	return ret;
