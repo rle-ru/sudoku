@@ -1,0 +1,52 @@
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <stdio.h>
+
+#include "sudoku.h"
+
+void init_grid_surface(t_sudoku *sudoku)
+{
+	SDL_Texture *grid = SDL_CreateTexture(sudoku->renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, WINDOW_WIDTH, WINDOW_HEIGHT);
+	SDL_SetRenderTarget(sudoku->renderer, grid);
+
+	SDL_SetRenderDrawColor(sudoku->renderer, 255, 255, 255, 255);
+	SDL_RenderClear(sudoku->renderer);
+	SDL_SetRenderDrawColor(sudoku->renderer, 0, 0, 0, 255);
+
+	int j = 0;
+	for (int i = 1; i < 9; i++)
+	{
+		if (i == 3 || i == 6)
+		{
+			for (int k = 0; k < 2; k++)
+			{
+				SDL_RenderDrawLine(sudoku->renderer, i * CELL_SIZE + i + j + k, 0, i * CELL_SIZE + i + j + k, WINDOW_HEIGHT);
+				SDL_RenderDrawLine(sudoku->renderer, 0, i * CELL_SIZE + i + j + k, WINDOW_WIDTH, i * CELL_SIZE + i + j + k);
+			}
+			j += 2;
+		}
+		SDL_RenderDrawLine(sudoku->renderer, i * CELL_SIZE + i + j, 0, i * CELL_SIZE + i + j, WINDOW_HEIGHT);
+		SDL_RenderDrawLine(sudoku->renderer, 0, i * CELL_SIZE + i + j, WINDOW_WIDTH, i * CELL_SIZE + i + j);
+	}
+
+	SDL_SetRenderTarget(sudoku->renderer, NULL);
+	sudoku->gridTexture = grid;
+}
+
+void initGraphics(t_sudoku *sudoku)
+{
+	SDL_Init(SDL_INIT_VIDEO);
+	TTF_Init();
+	sudoku->window = SDL_CreateWindow("Sudoku", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+	sudoku->renderer = SDL_CreateRenderer(sudoku->window, -1, SDL_RENDERER_ACCELERATED);
+	init_grid_surface(sudoku);
+}
+
+void quitGraphics(t_sudoku *sudoku)
+{
+	SDL_DestroyRenderer(sudoku->renderer);
+	SDL_DestroyWindow(sudoku->window);
+	SDL_DestroyTexture(sudoku->gridTexture);
+	TTF_Quit();
+	SDL_Quit();
+}

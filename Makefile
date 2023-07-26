@@ -10,9 +10,12 @@ BIN_FOLDER := .
 SDL_INCLUDE := -IC:\msys64\mingw64\include
 
 CFLAGS := -Wall -Wextra -flto -O3 -I$(INCLUDE_FOLDER) -I$(PREREQUISITES_FOLDER) -I$(SDL_INCLUDE) -MMD
-LDFLAGS := -LC:\msys64\mingw64\lib -lSDL2 -lSDL2_ttf
+LDFLAGS := -LC:\msys64\mingw64\lib
 
-SRCS_RAW := main.c
+SRCS_RAW := main.c	\
+			graphics_init.c	\
+			sudoku_init.c	\
+			main_loop.c	\
 
 SRCS := $(addprefix $(SRCS_FOLDER)/, $(SRCS_RAW))
 OBJS := $(SRCS:$(SRCS_FOLDER)/%.c=$(OBJS_FOLDER)/%.o)
@@ -24,7 +27,7 @@ PREREQUISITES := $(wildcard $(PREREQUISITES_FOLDER)/*.c)
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $(BIN_FOLDER)/$@ $^
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(BIN_FOLDER)/$@ $^ -lSDL2 -lSDL2_ttf
 
 $(OBJS_FOLDER)/%.o: $(SRCS_FOLDER)/%.c | $(OBJS_FOLDER)
 	$(CC) $(CFLAGS) -c $< -o $@ -MMD -MF $(@:.o=.d)
