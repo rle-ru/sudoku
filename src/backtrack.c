@@ -1,7 +1,5 @@
 #include "sudoku.h"
 
-#include <stdio.h>
-
 int solver(t_sudoku *sudoku)
 {
 	SDL_RenderClear(sudoku->renderer);

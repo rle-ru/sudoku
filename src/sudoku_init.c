@@ -15,6 +15,7 @@ void init_sudoku(t_sudoku *sudoku)
 			for (int k = 0; k < 9; k++)
 				sudoku->megaGrid[i][j][k] = 0;
 		}
+		sudoku->gridPos[i] = i * CELL_SIZE + i + 1 + (i > 2 ? 2 : 0) + (i > 5 ? 2 : 0);
 	}
 	for (i = 0; i < 9; i++)
 	{
