@@ -20,6 +20,8 @@ SRCS_RAW := main.c	\
 			backtrack.c	\
 			find_empty_cell.c	\
 			is_valid.c	\
+			remove_numbers.c	\
+			idiot_solver.c	\
 
 SRCS := $(addprefix $(SRCS_FOLDER)/, $(SRCS_RAW))
 OBJS := $(SRCS:$(SRCS_FOLDER)/%.c=$(OBJS_FOLDER)/%.o)

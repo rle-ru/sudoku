@@ -25,3 +25,10 @@ void init_sudoku(t_sudoku *sudoku)
 		sudoku->range[j] = temp;
 	}
 }
+
+void init_new_game(t_sudoku *sudoku, int difficulty)
+{
+	init_sudoku(sudoku);
+	solver(sudoku);
+	remove_numbers(sudoku, difficulty);
+}

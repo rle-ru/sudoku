@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
-#define CELL_SIZE 50
+#define CELL_SIZE 100
 #define CELL_MARGIN 5
 #define GRID_SIZE ((CELL_SIZE * 9) + 8 + 4)
 #define FONT_SIZE (CELL_SIZE - CELL_MARGIN * 2)
@@ -67,5 +67,20 @@ int is_valid(int grid[9][9], int row, int col, int num);
 **	Backtracking algorithm to solve the sudoku.
 */
 int solver(t_sudoku *sudoku);
+
+/*
+** Removes numbers from the grid to create a new game.
+*/	
+void remove_numbers(t_sudoku *sudoku, int difficulty);
+
+/*
+**	Initializes a new game.
+*/
+void init_new_game(t_sudoku *sudoku, int difficulty);
+
+/*
+** Solves the sudoku with human logic.
+*/
+int idiot_solver(t_sudoku *sudoku, int difficulty);
 
 #endif
