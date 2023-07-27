@@ -4,6 +4,8 @@
 #include <stdlib.h>
 
 #include "sudoku.h"
+#include "init.h"
+#include "game.h"
 
 int main(int ac, char **av)
 {
@@ -13,7 +15,8 @@ int main(int ac, char **av)
 	initGraphics(&sudoku);
 	if (ac == 1)
 	{
-		printf("Welcome to %s!\n", av[0]);
+		av = av;
+		// printf("Welcome to %s!\n", av[0]);
 	}
 	init_new_game(&sudoku, 2);
 	int ret = main_loop(&sudoku);
@@ -23,8 +26,8 @@ int main(int ac, char **av)
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
 {
-	AllocConsole();
-	freopen("CONOUT$", "w", stdout);
+	// AllocConsole();
+	// freopen("CONOUT$", "w", stdout);
 
 	hInst = hInst;
 	hInstPrev = hInstPrev;
@@ -50,8 +53,8 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
 	int result = main(ac, av);
 
 	free(av);
-	fclose(stdout);
-	FreeConsole();
+	// fclose(stdout);
+	// FreeConsole();
 
 	return result;
 }

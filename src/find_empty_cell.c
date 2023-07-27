@@ -1,4 +1,4 @@
-#include "sudoku.h"
+#include "bool.h"
 
 int find_empty_cell(int grid[9][9], int *row, int *col)
 {
@@ -7,8 +7,8 @@ int find_empty_cell(int grid[9][9], int *row, int *col)
 		for (*col = 0; *col < 9; (*col)++)
 		{
 			if (grid[*row][*col] == 0)
-				return 1;
+				return TRUE;
 		}
 	}
-	return 0;
+	return FALSE;
 }

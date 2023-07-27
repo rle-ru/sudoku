@@ -1,4 +1,7 @@
 #include "sudoku.h"
+#include "display.h"
+#include "init.h"
+#include "solver.h"
 
 void init_sudoku(t_sudoku *sudoku)
 {

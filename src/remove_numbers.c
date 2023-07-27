@@ -1,8 +1,7 @@
 #include <stdlib.h>
 
 #include "sudoku.h"
-
-#include <stdio.h>
+#include "solver.h"
 
 void remove_numbers(t_sudoku *sudoku, int difficulty)
 {

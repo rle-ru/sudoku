@@ -1,6 +1,8 @@
 #include <SDL2/SDL.h>
 
 #include "sudoku.h"
+#include "display.h"
+#include "game.h"
 
 int main_loop(t_sudoku *sudoku)
 {
@@ -28,6 +30,13 @@ int main_loop(t_sudoku *sudoku)
 						sudoku->selectedCellY = i;
 					}
 				}
+			}
+			else if (event.type == SDL_KEYDOWN)
+			{
+				if (event.key.keysym.sym == SDLK_ESCAPE)
+					quit = 1;
+				else if (event.key.keysym.sym >= SDLK_1 && event.key.keysym.sym <= SDLK_9)
+					handle_key_press(sudoku, event.key.keysym.sym - SDLK_0);
 			}
 		}
 		SDL_RenderClear(sudoku->renderer);

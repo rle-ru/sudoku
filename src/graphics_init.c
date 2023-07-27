@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "sudoku.h"
+#include "display.h"
 
 void init_grid_surface(t_sudoku *sudoku)
 {

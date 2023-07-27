@@ -2,6 +2,7 @@
 #include <SDL2/SDL_ttf.h>
 
 #include "sudoku.h"
+#include "display.h"
 
 void draw_grid(t_sudoku *sudoku)
 {

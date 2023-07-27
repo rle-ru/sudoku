@@ -1,6 +1,6 @@
 #include "sudoku.h"
+#include "solver.h"
 
-#include <stdio.h>
 int naked_single(t_sudoku *sudoku, int grid[9][9])
 {
 	int running = 0;
@@ -99,6 +99,5 @@ int idiot_solver(t_sudoku *sudoku, int difficulty)
 		// if (!running)
 		// fill_candidates(sudoku, sudoku->gridClone);
 	}
-	printf("%d\n", find_empty_cell(sudoku->gridClone, &y, &x));
 	return !find_empty_cell(sudoku->gridClone, &y, &x);
 }

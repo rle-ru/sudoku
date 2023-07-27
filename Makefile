@@ -9,7 +9,7 @@ BIN_FOLDER := .
 
 SDL_INCLUDE := -I./include
 
-CFLAGS := -Wall -Wextra -flto -O3 -I$(INCLUDE_FOLDER) -I$(PREREQUISITES_FOLDER) -I$(SDL_INCLUDE) -MMD
+CFLAGS := -Wall -Wextra -flto -O3 -I$(INCLUDE_FOLDER) -I$(PREREQUISITES_FOLDER) -I$(SDL_INCLUDE) -MMD -mwindows
 LDFLAGS := -L./lib/
 
 SRCS_RAW := main.c	\
@@ -22,13 +22,14 @@ SRCS_RAW := main.c	\
 			is_valid.c	\
 			remove_numbers.c	\
 			idiot_solver.c	\
+			game_inputs.c	\
 
 SRCS := $(addprefix $(SRCS_FOLDER)/, $(SRCS_RAW))
 OBJS := $(SRCS:$(SRCS_FOLDER)/%.c=$(OBJS_FOLDER)/%.o)
 DEPS := $(OBJS:.o=.d)
 PREREQUISITES := $(wildcard $(PREREQUISITES_FOLDER)/*.c)
 
-.PHONY: all clean re fclean test
+.PHONY: all clean re fclean test clear
 
 all: $(TARGET)
 
@@ -51,5 +52,8 @@ fclean: clean
 
 re: fclean all
 
-test: all
+clear:
+	clear
+
+test: clear all
 	$(BIN_FOLDER)/$(TARGET)
