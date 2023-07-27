@@ -28,5 +28,9 @@ int idiot_solver(t_sudoku *sudoku, int difficulty);
 */	
 void remove_numbers(t_sudoku *sudoku, int difficulty);
 
+/*
+**	Fills the candidates array with the possible numbers for each cell.
+*/
+void fill_candidates(t_sudoku *sudoku, int grid[9][9]);
 
 #endif

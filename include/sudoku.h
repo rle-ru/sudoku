@@ -10,6 +10,7 @@ typedef struct s_sudoku
 	SDL_Renderer *renderer;
 	SDL_Texture *gridTexture;
 	SDL_Texture *cellTextures[9];
+	SDL_Texture *littleCellTextures[9];
 	int	gridPos[9];
 
 	int range[9];

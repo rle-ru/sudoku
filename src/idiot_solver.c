@@ -62,8 +62,13 @@ void fill_candidates(t_sudoku *sudoku, int grid[9][9])
 	for (int y = 0; y < 9; y++)
 		for (int x = 0; x < 9; x++)
 			if (grid[y][x] == 0)
+			{
 				for (int i = 0; i < 9; i++)
 					sudoku->megaGrid[y][x][i] = is_valid(grid, x, y, i + 1);
+			}
+			else
+				for (int i = 0; i < 9; i++)
+					sudoku->megaGrid[y][x][i] = 0;
 }
 
 int idiot_solver(t_sudoku *sudoku, int difficulty)

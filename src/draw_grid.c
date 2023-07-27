@@ -33,6 +33,18 @@ void draw_grid(t_sudoku *sudoku)
 				SDL_Rect rect = {sudoku->gridPos[j] + CELL_MARGIN, sudoku->gridPos[i] + CELL_MARGIN, FONT_SIZE, FONT_SIZE};
 				SDL_RenderCopy(sudoku->renderer, sudoku->cellTextures[sudoku->grid[i][j] - 1], NULL, &rect);
 			}
+			else
+			{
+				for (int k = 0; k < 9; k++)
+				{
+					if (sudoku->megaGrid[i][j][k] == 0)
+						continue;
+					int startx = sudoku->gridPos[j] + (LITTLE_FONT_SIZE * (k % 3)) + CELL_MARGIN;
+					int starty = sudoku->gridPos[i] + (LITTLE_FONT_SIZE * (k / 3)) + CELL_MARGIN;
+					SDL_Rect rect = {startx, starty, LITTLE_FONT_SIZE, LITTLE_FONT_SIZE};
+					SDL_RenderCopy(sudoku->renderer, sudoku->littleCellTextures[k], NULL, &rect);
+				}
+			}
 		}
 	}
 }

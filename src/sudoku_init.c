@@ -34,4 +34,5 @@ void init_new_game(t_sudoku *sudoku, int difficulty)
 	init_sudoku(sudoku);
 	solver(sudoku);
 	remove_numbers(sudoku, difficulty);
+	fill_candidates(sudoku, sudoku->grid);
 }

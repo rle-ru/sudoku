@@ -50,8 +50,16 @@ void init_font(t_sudoku *sudoku)
 		sudoku->cellTextures[i] = SDL_CreateTextureFromSurface(sudoku->renderer, surface);
 		SDL_FreeSurface(surface);
 	}
+	TTF_Font *littleFont = TTF_OpenFont("./arial.ttf", LITTLE_FONT_SIZE);
+	for (int i = 0; i < 9; i++)
+	{
+		SDL_Surface *surface = TTF_RenderText_Solid(littleFont, (char[]){i + 49, '\0'}, color);
+		sudoku->littleCellTextures[i] = SDL_CreateTextureFromSurface(sudoku->renderer, surface);
+		SDL_FreeSurface(surface);
+	}
 
 	TTF_CloseFont(font);
+	TTF_CloseFont(littleFont);
 }
 
 void initGraphics(t_sudoku *sudoku)
@@ -72,5 +80,8 @@ void quitGraphics(t_sudoku *sudoku)
 	TTF_Quit();
 	SDL_Quit();
 	for (int i = 0; i < 9; i++)
+	{
 		SDL_DestroyTexture(sudoku->cellTextures[i]);
+		SDL_DestroyTexture(sudoku->littleCellTextures[i]);
+	}
 }
