@@ -7,10 +7,10 @@ PREREQUISITES_FOLDER := prerequisites
 OBJS_FOLDER := objs
 BIN_FOLDER := .
 
-SDL_INCLUDE := -IC:\msys64\mingw64\include
+SDL_INCLUDE := -I./include
 
 CFLAGS := -Wall -Wextra -flto -O3 -I$(INCLUDE_FOLDER) -I$(PREREQUISITES_FOLDER) -I$(SDL_INCLUDE) -MMD
-LDFLAGS := -LC:\msys64\mingw64\lib
+LDFLAGS := -L./lib/
 
 SRCS_RAW := main.c	\
 			graphics_init.c	\
