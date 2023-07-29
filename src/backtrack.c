@@ -5,9 +5,9 @@
 
 int solver(t_sudoku *sudoku)
 {
-	SDL_RenderClear(sudoku->renderer);
-	draw_grid(sudoku);
-	SDL_RenderPresent(sudoku->renderer);
+	// SDL_RenderClear(sudoku->renderer);
+	// draw_grid(sudoku);
+	// SDL_RenderPresent(sudoku->renderer);
 
 	int x, y;
 	if (find_empty_cell(sudoku->grid, &y, &x) == FALSE)

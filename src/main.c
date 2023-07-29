@@ -16,18 +16,18 @@ int main(int ac, char **av)
 	if (ac == 1)
 	{
 		av = av;
-		// printf("Welcome to %s!\n", av[0]);
 	}
-	init_new_game(&sudoku, 2);
+	init_new_game(&sudoku, 15);
 	int ret = main_loop(&sudoku);
 	quitGraphics(&sudoku);
+
 	return ret;
 }
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
 {
-	// AllocConsole();
-	// freopen("CONOUT$", "w", stdout);
+	AllocConsole();
+	freopen("CONOUT$", "w", stdout);
 
 	hInst = hInst;
 	hInstPrev = hInstPrev;
@@ -53,8 +53,8 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
 	int result = main(ac, av);
 
 	free(av);
-	// fclose(stdout);
-	// FreeConsole();
+	fclose(stdout);
+	FreeConsole();
 
 	return result;
 }

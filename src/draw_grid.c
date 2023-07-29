@@ -21,12 +21,24 @@ void draw_grid(t_sudoku *sudoku)
 			{
 				jprime += 2;
 			}
-			if (j == sudoku->selectedCellX && i == sudoku->selectedCellY)
+			if (j == sudoku->clickedCellX && i == sudoku->clickedCellY)
 			{
 				SDL_Rect rect = {sudoku->gridPos[j], sudoku->gridPos[i], CELL_SIZE, CELL_SIZE};
 				SDL_SetRenderDrawColor(sudoku->renderer, 255, 0, 0, 255);
 				SDL_RenderFillRect(sudoku->renderer, &rect);
-				SDL_SetRenderDrawColor(sudoku->renderer, 0, 0, 0, 255);
+			}
+			else if (sudoku->grid[i][j] == sudoku->clickedNumber && sudoku->clickedNumber)
+			{
+				SDL_Rect rect = {sudoku->gridPos[j], sudoku->gridPos[i], CELL_SIZE, CELL_SIZE};
+				SDL_SetRenderDrawColor(sudoku->renderer, 0, 155, 0, 255);
+				SDL_RenderFillRect(sudoku->renderer, &rect);
+			}
+			else if (sudoku->megaGrid[i][j][sudoku->clickedNumber - 1] && sudoku->clickedNumber != 0 && !sudoku->grid[i][j])
+			{
+				SDL_Rect rect = {sudoku->gridPos[j], sudoku->gridPos[i], CELL_SIZE, CELL_SIZE};
+				SDL_SetRenderDrawColor(sudoku->renderer, 0, 255, 0, 255);
+				SDL_RenderFillRect(sudoku->renderer, &rect);
+
 			}
 			if (sudoku->grid[i][j] != 0)
 			{

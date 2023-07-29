@@ -35,4 +35,8 @@ void init_new_game(t_sudoku *sudoku, int difficulty)
 	solver(sudoku);
 	remove_numbers(sudoku, difficulty);
 	fill_candidates(sudoku, sudoku->grid);
+	sudoku->clickedNumber = 0;
+	sudoku->shiftHeld = 0;
+	sudoku->clickedCellX = -1;
+	sudoku->clickedCellY = -1;
 }

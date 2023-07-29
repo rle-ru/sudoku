@@ -74,14 +74,14 @@ void initGraphics(t_sudoku *sudoku)
 
 void quitGraphics(t_sudoku *sudoku)
 {
-	SDL_DestroyRenderer(sudoku->renderer);
-	SDL_DestroyWindow(sudoku->window);
-	SDL_DestroyTexture(sudoku->gridTexture);
-	TTF_Quit();
-	SDL_Quit();
 	for (int i = 0; i < 9; i++)
 	{
 		SDL_DestroyTexture(sudoku->cellTextures[i]);
 		SDL_DestroyTexture(sudoku->littleCellTextures[i]);
 	}
+	SDL_DestroyRenderer(sudoku->renderer);
+	SDL_DestroyWindow(sudoku->window);
+	SDL_DestroyTexture(sudoku->gridTexture);
+	TTF_Quit();
+	SDL_Quit();
 }

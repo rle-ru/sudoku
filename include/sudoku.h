@@ -11,7 +11,7 @@ typedef struct s_sudoku
 	SDL_Texture *gridTexture;
 	SDL_Texture *cellTextures[9];
 	SDL_Texture *littleCellTextures[9];
-	int	gridPos[9];
+	int gridPos[9];
 
 	int range[9];
 	int grid[9][9];
@@ -20,6 +20,10 @@ typedef struct s_sudoku
 
 	int selectedCellX;
 	int selectedCellY;
+	int clickedCellX;
+	int clickedCellY;
+	int clickedNumber;
+	int shiftHeld;
 } t_sudoku;
 
 #endif
