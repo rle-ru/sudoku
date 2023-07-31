@@ -1,4 +1,3 @@
-#include <windows.h>
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -25,6 +24,7 @@ int main(int ac, char **av)
 }
 
 #if defined(__WIN32__) || defined(_WIN32) || defined(WIN32) || defined(__WINDOWS__) || defined(__TOS_WIN__)
+#include <windows.h>
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
 {

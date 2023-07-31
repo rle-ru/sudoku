@@ -7,10 +7,21 @@ PREREQUISITES_FOLDER := prerequisites
 OBJS_FOLDER := objs
 BIN_FOLDER := .
 
-SDL_INCLUDE := -I./include
+ifeq ($(OS),Windows_NT)
+	RM := del /Q
+	SDL_INCLUDE := -I./windows/include
+	LDFLAGS := -L./windows/lib
+	CFLAGS += -mwindows
+else
+	UNAME_S := $(shell uname -s)
+	RM := rm -f
+	ifeq ($(UNAME_S),Linux)
+		SDL_INCLUDE := -I./linux/include
+		LDFLAGS := -L./linux/lib
+	endif
+endif
 
-CFLAGS := -Wall -Wextra -flto -O3 -I$(INCLUDE_FOLDER) -I$(PREREQUISITES_FOLDER) -I$(SDL_INCLUDE) -MMD -mwindows
-LDFLAGS := -L./lib/
+CFLAGS += -Wall -Wextra -flto -O3 -I$(INCLUDE_FOLDER) -I$(PREREQUISITES_FOLDER) -I$(SDL_INCLUDE) -MMD
 
 SRCS_RAW := main.c	\
 			graphics_init.c	\
