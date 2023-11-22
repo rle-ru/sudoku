@@ -21,7 +21,7 @@ else
 	endif
 endif
 
-CFLAGS += -Wall -Wextra -flto -O3 -I$(INCLUDE_FOLDER) -I$(PREREQUISITES_FOLDER) -I$(SDL_INCLUDE) -MMD
+CFLAGS += -Wall -Wextra -flto -O3 -I$(INCLUDE_FOLDER) -I$(PREREQUISITES_FOLDER) -I$(SDL_INCLUDE) -MMD 
 
 SRCS_RAW := main.c	\
 			graphics_init.c	\
@@ -68,4 +68,4 @@ clear:
 	clear
 
 test: clear all
-	$(BIN_FOLDER)/$(TARGET)
+	$(BIN_FOLDER)/$(TARGET).exe
